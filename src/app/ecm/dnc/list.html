@@ -1,0 +1,83 @@
+<div ng-show="!vm.authorizationRequires" layout="row" id="file-manager" class="page-layout page-layout2 simple right-sidenav right-sidenav2">
+    <div class="side-nav" layout="column" flex="30" style="overflow: hidden">
+
+
+        <div class="top-bg md-accent-bg"></div>
+        <div class="header" layout="column" layout-align="space-between">
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-text" translate="dnc.dncs"></span>
+            </div>
+            <md-fab-speed-dial ng-hide="vm.hidden" md-direction="down" md-open="vm.isOpen" class="dncListFab md-scale md-mini add-event " ng-class="{ 'md-hover-full': vm.hover }" ng-mouseenter="vm.isOpen=true" ng-mouseleave="vm.isOpen=false">
+                <md-fab-trigger>
+                    <md-button aria-label="menu" class="md-fab md-warn md-mini">
+                        <md-icon md-font-icon="icon-plus"></md-icon>
+                    </md-button>
+                </md-fab-trigger>
+                <md-fab-actions>
+
+                    <md-button aria-label="AddFolder" ng-click="vm.create()" class="md-fab md-raised  md-accent md-mini">
+                        <md-tooltip md-direction="top" md-autohide="false" md-visible="tooltipVisible"><span translate="generic.createLabel" translate-values="{name:'{{'dnc.dnc'|translate}}'}"></span></md-tooltip>
+                        <md-icon md-font-icon class="icon-account-plus" aria-label="AddDNC"></md-icon>
+                    </md-button>
+                    <md-button aria-label="AddFile" ng-click="vm.dialogShowDetail($event)" class="md-fab  md-accent md-raised md-mini">
+                        <md-tooltip md-direction="top" md-visible="tooltipVisible" md-autohide="false"><span translate="file.uploadFile"></span> </md-tooltip>
+                        <md-icon md-font-icon="icon-file-excel" aria-label="AddFile"></md-icon>
+                    </md-button>
+
+                </md-fab-actions>
+            </md-fab-speed-dial>
+        </div>
+        <div class="center user-list scrollable" layout="column"  ms-scroll>
+            <div class="todo-items" ng-model="vm.dnc">
+                <div class="todo-item md-grey-A100-bg" md-ink-ripple layout="row" layout-align="start center" ng-click="vm.selectDnc(dnc)" ng-repeat="dnc in vm.dncs  | filter:global.search">
+
+                    <div class="info" flex="100">
+                        <md-list flex="100" class="fixedRows">
+                            <md-list-item class="contact-item">
+                                <div class="md-list-item-text compact">
+                                    <h3>
+                                        <span>
+                                	{{dnc.name}}({{dnc.primaryNumber}})
+                					<md-tooltip md-direction="top"><span translate="dnc.primaryNumberName"></span></md-tooltip>
+                                        </span>
+                                    </h3>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                    <!-- info -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <md-sidenav ng-show="vm.selected" class="center sidebar" layout="column" flex="70" md-is-locked-open="$mdMedia('gt-xs')" md-component-id="details-sidenav" ng-include="'app/ecm/dnc/sidenavs/sidenav.html'" ms-scroll ms-sidenav-helper>
+    </md-sidenav>
+
+
+
+
+</div>
+
+
+
+<div id="admin-access" ng-show="vm.authorizationRequires">
+    <div layout="column" ui-view="main" class="animate-slide-up ng-scope" id="main" ng-show="vm.authorizationRequires">
+        <div flex="" layout="column" class="template-layout ng-scope" id="layout-content-only">
+            <md-content flex="" ui-view="content" class="animate-slide-up md-background md-hue-1 ng-scope md-default-theme" id="content">
+                <ng-include src="'app/adminPanel/custome/accessDenied.html'" />
+            </md-content>
+        </div>
+
+    </div>
+</div>

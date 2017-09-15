@@ -1,0 +1,158 @@
+.list-card .deleteButton{
+  display: none;
+}
+.show_hover_effect{
+  background-color: #dbdbdb;
+}
+.show_hover_effect2{
+  background-color: #f0f0f0;
+}
+.arrange-text{
+  text-indent: 5%;
+  word-wrap: break-word;
+  margin-top: 5%;
+}
+.arrange-iconss{
+  margin-top: 3%;
+}
+.list-card:hover .deleteButton{
+  display: block;
+}
+md-datepicker{
+  background-color: inherit;
+}
+md-dialog.card-dialog  md-dialog-content .description {
+   padding-bottom: 0;
+  margin-top: 40px;
+}
+.selectColor{
+  margin-top: 72px;
+}
+.colorPicker{
+  margin-left:40px;
+  max-height: 30px;
+}
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+}
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: #039BE5;
+  display: inline-block;
+
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: black;
+
+}
+.fabIcon{
+  box-sizing: border-box;
+  margin: 25px;
+  position: fixed;
+  white-space: nowrap;
+  z-index: 30;
+  padding-left: 0;
+  list-style: none;
+  right: 0;
+  bottom: 0;
+}
+.addSkillAndGroup{
+  margin-left: 26px;
+  width: 198px;
+}
+.tags {
+  font-size: 12px;
+
+  .tag {
+   // border-radius: 2px;
+    margin: 8px 4px 0 0;
+    padding: 3px 8px;
+    background-color: transparent;
+    border-radius: 50%;
+
+    .tag-color {
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+    }
+  }
+}
+
+// Users List & Detail
+
+.user-list .todo-item {
+  padding:8px;
+}
+.user-detail .agnt-info .icon {
+  margin:0;
+  vertical-align:text-top;
+}
+.user-detail .agnt-info p {
+  color:rgba(0, 0, 0, 0.54); font-size:13px;
+}
+.dayt {
+  display:block; text-indent:28px;
+}
+#smallDialog{
+  md-dialog.card-dialog{
+    max-width: 423px;
+    verflow: hidden;
+}
+}
+ng-color-picker{
+
+  ul {
+  padding: 0;
+  margin: 0;
+}
+  li {
+    width:20px;
+    height:20px;
+    box-sizing:border-box;
+    display:inline-block;
+  }
+  li.selected {
+    border: 1px solid #333;
+  }
+}
+.dayz{
+  margin:45px 0 10px 8px;
+}
+.dir-list {
+	list-style: none;
+}
+/*.fixedRows{
+  height: 250px;
+  overflow: hidden;
+}*/
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+
+.dialogdemoBasicUsage button {
+  width: 200px; }
+
+.dialogdemoBasicUsage div#status {
+  color: #c60008; }
+
+.dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+  margin-bottom: 0; }

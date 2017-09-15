@@ -1,0 +1,33 @@
+<!-- BOARDS -->
+<div id="boards" class="md-accent-bg" layout="column" flex>
+
+    <!-- BOARD SELECTION -->
+    <div id="board-selector" layout="column" layout-align="start center" flex>
+
+        <h1>Wallboard App</h1>
+
+        <!-- BOARD LIST -->
+        <div class="board-list" layout="row" layout-align="center center" layout-wrap>
+
+            <!-- BOARD -->
+            <div class="board-list-item" ng-repeat="board in vm.boardList" ui-sref="app.wallboard.wallboards.wallboard.si({id:board.id, uri:board.uri,single:board.uri})" layout="column" layout-align="center center">
+                <md-icon md-font-icon="icon-trello" class="icon s64"></md-icon>
+                <div class="board-name">{{board.name}}</div>
+            </div>
+            <!-- / BOARD -->
+
+            <!-- NEW BOARD BUTTON -->
+            <div class="board-list-item add-new-board" layout="column" layout-align="center center" ui-sref="app.wallboard.wallboards.addBoard">
+                <md-icon md-font-icon="icon-plus-circle" class="icon s64"></md-icon>
+                <div class="board-name">Add new wallbaoard</div>
+            </div>
+            <!-- / NEW BOARD BUTTON -->
+
+        </div>
+        <!-- / BOARD LIST -->
+
+    </div>
+    <!-- / BOARD SELECTION -->
+
+</div>
+<!-- / BOARDS -->

@@ -1,0 +1,78 @@
+<div id="dnc">
+
+  <md-toolbar class="md-accent md-hue-2 md-default-theme">
+    <div layout-align="space-between center" layout="row" class="md-toolbar-tools">
+      <span class="title">{{vm.createFormOr == 'edit'?'generic.update':'generic.create'|translate}}</span>
+        <span>
+        <button type="button" class="md-icon-button md-button md-ink-ripple" ng-show="vm.createFormOr==='edit'" ng-click="vm.deleteDnc(vm.selected.id)" aria-label="Delete"><md-icon md-font-icon="icon-delete" class="md-font icon-delete material-icons"></md-icon><md-tooltip><span translate="generic.delete"></span></md-tooltip></button>
+        <button type="button" class="md-icon-button md-button md-ink-ripple" ng-disabled="createForm.$invalid" ng-click="vm.saveDnc(vm.selected)" aria-label="Save"><md-icon md-font-icon="icon-check" class="md-font material-icons"></md-icon><md-tooltip><span translate="generic.save"></span></md-tooltip></button>
+        <button type="button" class="md-icon-button md-button md-ink-ripple"  ng-click="vm.selected=undefined" aria-label="Close dialog"><md-icon md-font-icon="icon-close" class="ng-scope ng-isolate-scope md-font icon-close material-icons" aria-hidden="true"></md-icon><md-tooltip><span translate="generic.close"></span></md-tooltip></button>
+        </span>
+    </div>
+  </md-toolbar>
+  <!-- / SIDENAV HEADER -->
+
+  <!-- SIDENAV CONTENT -->
+  <md-content class="content app-detail">
+
+    <div class="file-details">
+
+      <form  name="createForm" class="md-inline-form" >
+
+        <div layout="row" layout-padding>
+
+          <div flex="50">
+            <md-input-container class="md-block">
+              <label for="" translate="generic.name"></label>
+              <input type="text" name="name"  autocomplete="off" ng-pattern="/^[a-zA-Z0-9_]{3,30}$/"  max-length="3"  ng-model="vm.selected.name"  placeholder="{{'generic.name'|translate}}">
+              <div ng-messages="createForm.name.$error" ng-show="createForm.name.$touched"
+                   role="alert">
+                <div ng-message="pattern">
+                  <span translate="data.specialWithSpaceChar" translate-values="{field:'{{'generic.name'|translate}}'}"></span>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+          <div flex="50" class="en-app">
+            <md-input-container class="md-block">
+              <label for="" translate="dnc.number"></label>
+              <input type="text" name="primaryNumber" required autocomplete="off" ng-pattern="/^\+?[0-9]+$/" ng-maxlength="15"
+                     ng-model="vm.selected.primaryNumber"  placeholder="{{'dnc.number'|translate}}">
+              <div ng-messages="createForm.primaryNumber.$error" ng-show="createForm.primaryNumber.$touched"
+                   role="alert">
+                <div ng-message="pattern">
+                  <span translate="data.onlyNumber" translate-values="{field:'{{'dnc.number'|translate}}'}"></span>
+                </div>
+                <div ng-message="pattern">
+                  <span translate="data.onlyNumberLength" translate-values="{min:11,max:15}"></span>
+                </div>
+              </div>
+            </md-input-container>
+
+          </div>
+        </div><!--row-->
+        <!--<div layout="row" layout-padding="">-->
+          <!--<md-input-container class="md-block">-->
+            <!--<label for="" translate="dnc.secondaryNumber"></label>-->
+            <!--<input type="text" name="secondaryNumber"  autocomplete="off" ng-pattern="/^\+?[0-9]+$/" ng-maxlength="15"  ng-model="vm.selected.secondaryNumber"-->
+                   <!--placeholder="{{'dnc.secondaryNumber'|translate}}">-->
+            <!--<div ng-messages="createForm.secondaryNumber.$error" ng-show="createForm.secondaryNumber.$touched"-->
+                 <!--role="alert">-->
+              <!--<div ng-message="pattern">-->
+                <!--<span translate="data.onlyNumber" translate-values="{field:'{{'dnc.secondaryNumber'|translate}}'}"></span>-->
+              <!--</div>-->
+              <!--<div ng-message="maxlength">-->
+                <!--<span translate="data.filedLarge" translate-values="{field:'{{'dnc.secondaryNumber'|translate}}',number:15}"></span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</md-input-container>-->
+         <!--<input name="updatedById" type="hidden" ng-model="vm.updatedById" value="vm.updatedById">-->
+        <!--</div>-->
+      </form>
+
+
+    </div>
+  </md-content>
+</div>
+
+

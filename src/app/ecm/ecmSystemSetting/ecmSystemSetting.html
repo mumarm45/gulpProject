@@ -1,0 +1,22 @@
+<div ng-show="!vm.authorizationRequires" layout="column">
+<div layout="row" class="sys-tabs">
+    <md-button  ui-sref="app.ecmSystemSetting.ecmPreferenceSetting" aria-label="preferenceSetting" ng-disabled="vm.currentState=='ecmPreferenceSetting'"><md-icon md-font-icon class="icon-folder-account"></md-icon> <span translate="preferenceSetting.preferenceSetting"></span></md-button>
+</div>
+
+
+
+	<md-content id="system" class="animate-slide-right md-background md-hue-1" ms-scroll
+            ui-view="system" flex></md-content>
+
+</div>
+
+<div id="admin-access" ng-show="vm.authorizationRequires">
+  <div layout="column" ui-view="main" class="animate-slide-up ng-scope" id="main" ng-show="vm.authorizationRequires">
+    <div flex="" layout="column" class="template-layout ng-scope" id="layout-content-only">
+      <md-content flex="" ui-view="content" class="animate-slide-up md-background md-hue-1 ng-scope md-default-theme" id="content">
+        <ng-include src="'app/adminPanel/custome/accessDenied.html'"/>
+      </md-content>
+    </div>
+
+  </div>
+</div>

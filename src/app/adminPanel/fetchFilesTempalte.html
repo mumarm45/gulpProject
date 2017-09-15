@@ -1,0 +1,96 @@
+<div layout="row">
+  <label flex="30" ng-show="vm.typeOfFile=='prompt'" translate="easyAnnouncement.announcements"></label>
+  <label flex="30" ng-show="vm.typeOfFile=='script'" translate="file.reqScript"></label>
+
+
+    <md-menu flex-offset="40" flex="70" class="labels  loadFiles">
+        <md-button class="md-icon-button" aria-label="Label" md-prevent-menu-close ng-click="vm.labelTabIndex = 0;vm.openMenu();$mdOpenMenu($event); ">
+            <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
+          <md-tooltip><span translate="easyAnnouncement.announcements"></span></md-tooltip>
+        </md-button>
+
+        <md-menu-content class="labels-menu-content " width="4">
+          <div class="show_hover_effect">
+
+            <md-button flex="20" ng-disabled="vm.folderTriverseArray.length <=1" class="md-icon-button" md-prevent-menu-close ng-click="vm.backFolder()">
+              <md-icon md-font-icon="icon-keyboard-backspace" aria-label="Close dialog"></md-icon>
+
+            </md-button>
+
+            <span flex="60">{{vm.prompts.path}}</span>
+
+            <md-button style="float: right" flex="20" class="md-icon-button" ng-click="mdCloseMenu($event)">
+              <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+
+            </md-button>
+
+          </div>
+            <md-tabs md-selected="vm.labelTabIndex">
+
+                <!-- SELECT LABEL -->
+                <md-tab>
+                    <md-tab-body class="scrollable"  ms-scroll>
+
+
+
+                        <md-menu-item   class="label " ng-repeat="label in vm.prompts.data.Folder ">
+
+                            <!--<md-button class="label-toggle-button" md-prevent-menu-close aria-label="Toggle Label" translate translate-attr-aria-label="skill.searchSkill">-->
+                          <div layout="row" ng-mouseenter="hovering=true" ng-class="{'show_hover_effect2':hovering}"
+                               ng-mouseleave="hovering=false" layout-wrap>
+
+                                <div flex="15" class="arrange-iconss"><md-icon md-font-icon="icon-folder"></md-icon></div>
+                               <div flex="70" class="arrange-text"> {{label.FolderName}}</div>
+                                <div flex="10"><md-button  class="md-icon-button" md-prevent-menu-close ng-click="vm.openFolder(label.path+label.FolderName+'/','yes')" aria-label="Close dialog" translate translate-attr-aria-label="CALENDAR.CLOSE_DIALOG">
+                                    <md-icon md-font-icon="icon-chevron-right"></md-icon>
+                                    <md-toolTip>{{'easyAnnouncement.gotoFolder' | translate}}</md-toolTip>
+
+                                </md-button>
+                                </div><div flex="5"></div>
+
+                          </div>
+
+                            <!--</md-button>-->
+
+                            <md-button ng-if=" vm.existsSkill(label.skillId,vm.agent.skills) " class="md-icon-button label-edit-button " md-prevent-menu-close ng-click="vm.editSkill={ id:label.skillId,agent:vm.agent.userID};
+                                                                vm.labelTabIndex=2 " aria-label="Edit Label ">
+                                <md-icon md-font-icon="icon-pencil" class="s16 "></md-icon>
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item  class="label " ng-repeat="file in vm.prompts.data.File ">
+
+                            <md-button class="bu" md-prevent-menu-close ng-click="vm.addFile(file)" aria-label="Toggle Label " translate translate-attr-aria-label="SB.TOGGLE_LABEL ">
+                                <div layout="row ">
+                                    <md-toolTip>{{'easyAnnouncement.selectFile' | translate}}</md-toolTip>
+                                  <span><md-icon md-font-icon="icon-music-box"></md-icon></span>
+                                    <span>{{file.FileName}}</span>
+                                </div>
+                            </md-button>
+
+                        </md-menu-item>
+
+                    </md-tab-body>
+                </md-tab>
+                <!-- / SELECT LABEL -->
+
+            </md-tabs>
+        </md-menu-content>
+    </md-menu>
+</div>
+<div layout="row" ng-if="vm.format=='multiple'">
+    <md-chips disabled="true" name="announcements" class="label-chips" ng-model="addArray" md-autocomplete-snap md-require-match="true" md-transform-chip="$chip">
+        {{label}}
+
+        <button md-chip-remove class="md-primary" md-prevent-menu-close>
+              <md-icon md-font-icon="icon-close"  class="s18"></md-icon>
+            </button>
+
+    </md-chips>
+
+</div>
+
+<div layout="row" ng-if="vm.format=='singel'">
+    {{addArray}}
+
+</div>

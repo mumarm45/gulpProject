@@ -1,0 +1,48 @@
+<md-dialog class="event-detail-dialog" aria-label="New Message">
+    <form name="dncForm">
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">{{'dnc.uploadCSv' | translate}}</span>
+                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" translate translate-attr-aria-label="generic.close">
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div layout="row" layout-align="space-between center">
+                <div flex="60">
+                    <md-input-container class="md-block pic-msg">
+                        <lable>{{vm.dnc.file.name}}</lable>
+
+                        <md-button ngf-select="" class="save-button md-accent md-raised" name="file" accept=".csv" ngf-max-size="2MB" aria-label="upload" ng-model="vm.dnc.file">{{'file.browse' | translate}}</md-button>
+                        <div ng-messages="dncForm.file.$error" ng-show="dncForm.file.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>{{'generic.selectFile' | translate}}</span>
+                            </div>
+                        </div>
+                        <div ng-show="vm.fileFormate" role="alert">
+                            <span translate="generic.selectFormat" translate-values="{format:'.csv'}"></span>
+                        </div>
+                        <div ng-show="true" role="alert">
+                            <span translate="generic.fileSize" translate-values="{size:'2MB'}"></span>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="30">
+                    <md-button type="submit" target="_blank" href="../../../efadminpanel/assets1/sampleCsv/SampleDnc.csv" type="application/octet-stream" download class="save-button md-accent md-raised">Sample Csv</md-button>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <md-button type="submit" ng-click="vm.saveDncPic(vm.dnc)" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="dncForm.$invalid || dncForm.$pristine"><span translate="generic.save"></span></md-button>
+
+        </md-dialog-actions>
+    </form>
+
+
+
+
+</md-dialog>

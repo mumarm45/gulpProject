@@ -1,0 +1,97 @@
+<div id="camapign">
+
+
+    <div class="side-nav" layout="column" flex="100">
+        <div class="top-bg md-accent-bg"></div>
+        <div class="header" layout="column" layout-align="space-between">
+
+            <md-toolbar class="md-accent md-hue-2 md-default-theme">
+                <div flex layout-align="space-between center "  layout="row" class="filterSearch md-toolbar-tools ">
+
+                    <md-input-container flex="50" class="md-block inputSearch">
+                        <label for="" translate="campaign.searchByPrimANdSec"></label>
+                        <input type="text" name="number" autocomplete="off" ng-change="vm.filterFunction(vm.search.number)" ng-model="vm.search.number" ng-model-options="{ debounce: 1000 }" placeholder="{{'generic.search'|translate}}">
+
+
+                    </md-input-container>
+                    <md-input-container flex="45" class="md-block">
+                        <label for="" translate="campaign.requestState.requestState"></label>
+                        <md-select name="state" class="font-small" ng-model="vm.search.state" md-on-close="vm.changeRequestState(vm.search.state)" placeholder="{{'generic.selectOneLabel'|translate:{name:vm.translationData.state} }}">
+                            <md-option ng-value="callstate.value"  ng-repeat="callstate in vm.callStates">{{callstate.translationV|translate}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-button aria-label="Open demo menu" flex="5" class="md-icon-button" ng-click="vm.closeSideNav('left')">
+                      <md-tooltip md-direction="top"><span translate="generic.close"></span></md-tooltip>
+                        <md-icon md-font-icon="icon-close"></md-icon>
+                    </md-button>
+
+
+
+                </div>
+
+                <div class="table-tilte1" layout="row">
+                    <span flex="40"> {{'campaign.totalCalls'|translate}} {{vm.totalCaller}}</span>
+                    <div flex="30" class="menu">
+                        <md-menu md-offset="0 -7">
+
+                            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                                <md-tooltip>{{'campaign.showHide'|translate}}</md-tooltip>
+                            </md-button>
+                            <md-menu-content width="2">
+                                <md-menu-item ng-repeat="colum in vm.colums " class="chkBoxPad">
+                                    <md-checkbox aria-label="check" ng-model="colum.check">{{colum.name | translate}}</md-checkbox>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                  <div flex="30"><h1>{{vm.campaignName}}</h1></div>
+                </div>
+            </md-toolbar>
+
+
+        </div>
+        <md-content class="content topp-padd app-detail scrollable" ms-scroll>
+            <table class="simple " ms-responsive-table>
+                <thead>
+                    <tr>
+                        <th translate="dnc.primaryNumber"></th>
+                        <th translate="dnc.secondaryNumber"></th>
+                        <th translate="dnc.requestState"> </th>
+                        <th translate="dnc.requestTime"></th>
+                        <th ng-repeat="colum in vm.colums" ng-show="colum.check">{{colum.name | translate }}</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr ng-repeat="callback in vm.callBackData">
+                        <td class="name">{{callback.primaryNumber}}</td>
+                        <td class="name">{{callback.secondaryNumber}}</td>
+                        <td class="position">{{callback.requestStateFilter}}</td>
+                        <td class="office">{{callback.requestTimeFilter}}</td>
+                        <td ng-repeat="colum in vm.colums" ng-show="colum.check">{{callback[colum.field]}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <div layout="row" layout-align="center center" ng-hide="vm.totalCaller<=vm.callBackData.length || vm.callBackData.length==0">
+                <md-button class="md-fab md-warn md-mini" ng-click="vm.incrementPage()" aria-label="Load more" translate translate-attr-aria-label="">
+                    <md-icon md-font-icon="icon-chevron-down s18"></md-icon>
+                    <md-tooltip md-direction="right">{{'generic.loadMore' | translate:'{count:25}'}} {{vm.totalCaller - vm.callBackData.length}}</md-tooltip>
+                </md-button>
+
+            </div>
+
+        </md-content>
+    </div>
+
+</div>

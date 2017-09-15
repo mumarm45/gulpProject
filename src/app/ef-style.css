@@ -1,0 +1,212 @@
+/* Scss Document */
+md-toolbar.md-default-theme.md-hue-2.md-accent:not(.md-menu-toolbar),
+md-toolbar.md-hue-2.md-accent:not(.md-menu-toolbar) {
+  background-color: rgba(36, 73, 158, 0.95); }
+
+.team-list .todo-items h3 {
+  margin: 0; }
+
+.sinlge-select .md-select-value .md-select-icon::after {
+  top: -3px; }
+.sinlge-select .md-list-item-text h3 {
+  font-size: 14px !important;
+  margin: 0 0 14px 0 !important; }
+.sinlge-select .md-2-line {
+  min-height: 56px; }
+.sinlge-select .md-text .md-avatar {
+  margin: 0 10px 0 0; }
+.sinlge-select .md-select-value *:first-child {
+  flex: none; }
+
+.super-select .md-button {
+  width: 100%; }
+.super-select md-input-container input {
+  font-size: 14px; }
+.super-select md-menu-item {
+  height: 58px; }
+.super-select .md-list-item-text h3 {
+  font-size: 13px !important; }
+.super-select md-list-item.md-2-line {
+  min-height: auto; }
+.super-select md-list-item .md-avatar {
+  margin: 5px 10px 5px 0; }
+
+.team-list .md-list-item-text h3 {
+  margin: 0; }
+
+.team-list md-list {
+  padding: 0; }
+
+.team-list md-list-item {
+  min-height: 22px; }
+
+.team-detail .h3 {
+  padding: 0 0 7px 0; }
+
+.team-detail .md-contact-chips .md-chips .md-chip .md-contact-name {
+  font-size: 14px; }
+
+.team-detail .md-contact-chips .md-chips .md-chip .md-contact-avatar img {
+  width: 32px; }
+
+.md-stripe {
+  background-color: #24499e;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  color: #fff;
+  height: 64px;
+  position: relative;
+  z-index: 1; }
+  .md-stripe .logo-text {
+    font-size: 20px;
+    padding: 18px 0 0 24px; }
+  .md-stripe .fabIcon {
+    position: absolute;
+    top: 3px;
+    right: 10px; }
+  .md-stripe .sys-tabs {
+    background: none; }
+    .md-stripe .sys-tabs .md-button {
+      border-bottom: 3px solid rgba(255, 255, 255, 0);
+      margin: 7px -2px;
+      border-radius: 0;
+      padding: 0 20px;
+      opacity: 0.7; }
+      .md-stripe .sys-tabs .md-button md-icon[md-font-icon] {
+        margin: 0 7px 0 0; }
+      .md-stripe .sys-tabs .md-button:hover {
+        opacity: 1;
+        border-color: rgba(255, 255, 255, 0.5);
+        background-color: none; }
+      .md-stripe .sys-tabs .md-button[disabled] {
+        opacity: 1;
+        cursor: default;
+        color: #039be5 !important;
+        border-color: #039be5; }
+        .md-stripe .sys-tabs .md-button[disabled] md-icon {
+          color: #039be5 !important; }
+
+.md-stripe + #board {
+  top: 64px;
+  padding-top: 40px; }
+
+#board-calendar #calendar1 {
+  z-index: 2; }
+  #board-calendar #calendar1 .calendar-header {
+    background-color: rgba(36, 73, 158, 0.95) !important; }
+#board-calendar .scheduled-tasks-sidenav {
+  overflow: hidden;
+  padding: 0 !important;
+  position: relative; }
+  #board-calendar .scheduled-tasks-sidenav .ps-container {
+    padding-top: 20px; }
+  #board-calendar .scheduled-tasks-sidenav .cards {
+    padding: 0 20px; }
+  #board-calendar .scheduled-tasks-sidenav .top-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 60px;
+    background-color: #24499e;
+    background-image: none;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    color: #fff;
+    z-index: 1; }
+  #board-calendar .scheduled-tasks-sidenav .header .logo-text {
+    font-size: 20px;
+    padding: 18px 0 0 24px;
+    z-index: 2;
+    color: #fff; }
+  #board-calendar .scheduled-tasks-sidenav .header .fabIcon {
+    position: absolute;
+    top: 0;
+    right: 0; }
+
+.new-ea md-chips + [ng-messages] {
+  font-size: 13px;
+  padding: 3px 0 10px 0;
+  color: #d50000; }
+.new-ea .md-tab.md-active:before {
+  content: "\e703";
+  position: absolute;
+  top: 11px;
+  left: 3px;
+  font-family: "icomoon";
+  font-size: 16px;
+  color: #039be5; }
+.new-ea md-checkbox:last-of-type {
+  font-size: 13px !important;
+  margin: 0 !important; }
+.new-ea ng-color-picker ul {
+  margin: 14px 0 0; }
+.new-ea .selct {
+  margin: 11px 0 0; }
+
+.play-stop md-radio-button {
+  font-size: 13px;
+  line-height: 24px; }
+
+.enable {
+  position: relative;
+  padding: 0; }
+  .enable p {
+    position: absolute;
+    top: -10px;
+    left: -3px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.7); }
+
+.stitle .editable-wrap .editable-input {
+  color: white; }
+
+.page-layout1.simple.right-sidenav > .center .header {
+  background-image: none;
+  background-color: #24499e; }
+
+#file-manager .sidenav .header {
+  background-color: rgba(36, 73, 158, 0.95); }
+
+#file-manager .sidenav .content .file-details .preview {
+  height: auto !important;
+  max-height: 150px;
+  margin-bottom: 20px; }
+
+.small-title .editable-input {
+  width: 75%; }
+
+#smallDialog md-dialog.compose-dialog {
+  max-width: 423px; }
+
+#smallDialog md-input-container.md-block {
+  width: 100%; }
+
+.small-list {
+  max-height: 200px;
+  overflow: auto; }
+
+#script-manager .sidenav .header {
+  background-color: rgba(36, 73, 158, 0.95); }
+
+.settings {
+  height: 100%; }
+  .settings > md-content {
+    height: 100%;
+    background-color: #fff !important; }
+.selectdemoSelectHeader {
+  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
+.selectdemoSelectHeader .demo-header-searchbox {
+  border-bottom: 1px;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  padding: 0; }
+.selectdemoSelectHeader .demo-select-header {
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+  padding-left: 10.667px;
+  height: 48px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto; }
+.selectdemoSelectHeader md-content._md {
+  max-height: 240px; }

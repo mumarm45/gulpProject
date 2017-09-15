@@ -1,0 +1,224 @@
+<div id="campaign">
+
+    <md-toolbar class="md-accent md-hue-2 md-default-theme">
+        <div layout-align="space-between center" layout="row" class="md-toolbar-tools">
+            <span class="title">{{vm.createFormOr == 'edit'?'generic.update':'generic.create'|translate}}</span>
+            <span>
+
+            <button type="button" ng-disabled="vm.createForm.$invalid || vm.createForm.$pristine || vm.falseStartTime"  class="md-icon-button md-button md-ink-ripple" ng-click="vm.saveCampaign(vm.selected)" aria-label="Save"><md-icon md-font-icon="icon-check" class="md-font material-icons"></md-icon><md-tooltip><span translate="generic.save"></span></md-tooltip>
+            </button>
+            <button type="button" class="md-icon-button md-button md-ink-ripple" ng-click="vm.selected=undefined" aria-label="Close dialog"><md-icon md-font-icon="icon-close" class="ng-scope ng-isolate-scope md-font icon-close material-icons" aria-hidden="true"></md-icon><md-tooltip><span translate="generic.close"></span></md-tooltip></button>
+
+            </span>
+        </div>
+    </md-toolbar>
+    <!-- / SIDENAV HEADER -->
+    <!-- SIDENAV CONTENT -->
+    <md-content class="content app-detail ">
+
+        <div class="file-details">
+
+            <form name="vm.createForm" class="md-inline-form">
+
+                <div layout="row" class="date-row" layout-padding>
+
+                    <div flex="50">
+                        <md-input-container class="md-block">
+                            <label for="" translate="generic.name"></label>
+                            <input type="text" name="name" min="1" autocomplete="off" ng-model-options="{ debounce: 250 }" ng-pattern="/^[a-zA-Z0-9_]{3,30}$/" name-local-validate list-element="{{vm.campaigns}}" max-length="3" property="campaignExist" object-key="name" ng-model="vm.selected.name"
+                                placeholder="{{'generic.name'|translate}}" required>
+                            <div ng-messages="vm.createForm.name.$error" ng-show="vm.createForm.name.$dirty" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'generic.name'|translate}}'}"> </span>
+                                </div>
+                                <div ng-show="!createForm.name.$valid && campaignExist">
+                                    <span translate="data.charSize" translate-values="{field:'{{'generic.name'|translate}}',number:3}"></span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span translate="data.specialChar" translate-values="{field:'{{'generic.name'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex="10">
+                        <label for="" translate="generic.status"></label>
+                        <md-switch ng-model="vm.selected.enabled" aria-label="status"></md-switch>
+                    </div>
+                    <div flex="50" class="en-app">
+
+                        <md-input-container class="md-block">
+                            <label translate="campaign.campaignType.campaignType"></label>
+                            <md-select ng-disabled="vm.createFormOr=='edit'" name="type" required="" ng-model="vm.selected.type" md-on-close="vm.changeCampaignType(vm.selected.type)" placeholder="{{'generic.selectOneLabel'|translate:{name:vm.translationData.campaignType} }}">
+                                <md-option ng-value="campaignType.id" ng-repeat="campaignType in vm.campaignTypes">{{campaignType.translationV|translate}}</md-option>
+                            </md-select>
+                            <div ng-messages="vm.createForm.type.$error" ng-show="vm.createForm.type.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{vm.translationData.campaignType}}'}"> </span>
+                                </div>
+
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <!--row-->
+
+
+                <div layout="row" class="date-row" layout-padding>
+                    <md-input-container flex="50" class="md-block">
+                        <label translate="strategy.strategy"></label>
+                        <md-select ng-disabled="vm.selected.enabled && vm.createFormOr=='edit'" name="strategyId" required="" ng-model="vm.selected.strategyId" placeholder="{{'generic.selectOneLabel'|translate:{name:vm.translationData.strategy} }}">
+                            <md-option ng-value="strategy.id" ng-repeat="strategy in vm.strategies">{{strategy.name|translate}}</md-option>
+                        </md-select>
+                        <div ng-messages="vm.createForm.strategyId.$error" ng-show="vm.createForm.strategyId.$touched" role="alert">
+                            <div ng-message="required">
+                                <span translate="data.cannot_null" translate-values="{name:'{{vm.translationData.strategy}}'}"> </span>
+                            </div>
+
+                        </div>
+                    </md-input-container>
+                    <md-input-container ng-show="vm.ciscoType==1" flex="50" class="md-block">
+                        <label translate="campaign.ucceCampaign"></label>
+                        <md-select ng-disabled="vm.createFormOr=='edit'" name="campaignDataId" required="" ng-model="vm.selected.campaignDataId" placeholder="{{'generic.selectOneLabel'|translate:{name:vm.translationData.ucceCampaign} }}">
+                            <md-option ng-value="campaignData.id" ng-repeat="campaignData in vm.ciscoCampaign">{{campaignData.name}}</md-option>
+                        </md-select>
+                        <div ng-messages="vm.createForm.campaignDataId.$error" ng-show="vm.createForm.campaignDataId.$touched" role="alert">
+                            <div ng-message="required">
+                                <span translate="data.cannot_null" translate-values="{name:'{{vm.translationData.ucceCampaign}}'}"> </span>
+                            </div>
+
+                        </div>
+                    </md-input-container>
+                    <md-input-container ng-show="vm.ciscoType==0" flex="50" class="md-block">
+                        <label translate="campaign.uccxCampaign"></label>
+                        <md-select name="campaignDataId" required="" ng-model="vm.selected.campaignDataId" placeholder="{{'generic.selectOneLabel'|translate:{name:vm.translationData.uccxCampaign} }}">
+                            <md-option ng-value="campaignData.id" ng-repeat="campaignData in vm.ciscoCampaign">{{campaignData.name}}</md-option>
+                        </md-select>
+                        <div ng-messages="vm.createForm.campaignDataId.$error" ng-show="vm.createForm.campaignDataId.$touched" role="alert">
+                            <div ng-message="required">
+                                <span translate="data.cannot_null" translate-values="{name:'{{vm.translationData.uccxCampaign}}'}"> </span>
+                            </div>
+
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row" class="date-row" layout-padding>
+                    <div flex="50">
+                        <md-input-container>
+                            <label translate="easyAnnouncement.startTime"></label>
+                            <input time-picker name="startTime" ng-change="vm.verifyDate(vm.selected.startTime,vm.selected.endTime)" time-format="H:i" class="time start" ng-model="vm.selected.startTime">
+                            <div ng-messages="vm.createForm.startTime.$error" ng-show="vm.createForm.startTime.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span> <small translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.startTime' | translate}}'}"></small></span>
+                                </div>
+                                <div>
+                                    <span ng-show="vm.falseStartTime"> <small translate="campaign.startTimeLess"> </small></span>
+
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex="50">
+                        <md-input-container>
+                            <label translate="easyAnnouncement.endTime"></label>
+                            <input time-picker name="endTime" ng-change="vm.verifyDate(vm.selected.startTime,vm.selected.endTime)" time-format="H:i" class="time end" ng-model="vm.selected.endTime">
+                            <div ng-messages="vm.createForm.endTime.$error" ng-show="vm.createForm.endTime.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span> <small translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.endTime' | translate}}'}"></small></span>
+                                </div>
+
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" class="date-row" layout-padding>
+
+
+                    <div ng-repeat="item in vm.weekly" class="standard" flex>
+                        <md-checkbox ng-model="vm.selected.weekDays[item.id]" ng-value="item.id">
+                            {{ item.name }}
+                        </md-checkbox>
+                    </div>
+                </div>
+
+
+                <div layout="row" class="prompts" layout-padding ng-show="vm.selected.type==1 && vm.ciscoType==0">
+                    <div flex="75">
+                        <h2>{{'campaign.prompts' | translate}}</h2>
+                    </div>
+                    <div flex="25">
+                        <md-button class="md-raised" ng-click="vm.addNewVariables()">{{'campaign.addNew' |translate}}</md-button>
+                    </div>
+                </div>
+
+                <div data-ng-repeat="variable in vm.selected.prompts" ng-show="vm.selected.type==1  && vm.ciscoType==0">
+
+                    <div layout="row" class="prompt" layout-padding ng-if="$first">
+                        <div flex="35">
+                            <md-input-container class="md-block" ng-if="variable.select">
+                                <label for="" translate="{{'campaign.key' | translate}}"></label>
+                                <md-select name="vname" required="" md-on-close="vm.checkVariable(variable)" ng-model="variable.name" aria-label="name">
+                                    <md-option ng-value="vari.key_value" ng-repeat="vari in vm.veriables">{{vari.key_value}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" ng-if="!variable.select">
+                                <label for="" translate="{{'campaign.newVariable'|translate}}"></label>
+                                <input type="text" name="vNameInput" autocomplete="off" ng-model-options="{ debounce: 250 }" ng-model="variable.vNameInput" aria-label="name" ng-pattern="/^[a-zA-Z0-9_]+$/" name-local-validate list-element="{{vm.veriables}}" max-length="2" property="vNameExist"
+                                    object-key="name" required>
+                            </md-input-container>
+                            <!--placeholder="{{'campaign.newVariable'|translate}}"-->
+                        </div>
+                        <div flex="15">
+
+                            <md-button class="md-icon-button md-raised" aria-label="Save Key" ng-click="vm.addNewVariableServer(variable,vNameInput)" ng-if="!variable.select" ng-show="$first">
+                                <md-icon md-font-icon="icon-check s18"></md-icon>
+                                <md-tooltip md-direction="top">{{'campaign.saveKey' | translate}}</md-tooltip>
+                            </md-button>
+
+                            <md-button class="md-icon-button md-raised" aria-label="Cancel" ng-click="vm.cancelOperation(variable,vname)" ng-if="!variable.select" ng-show="$first">
+                                <md-icon md-font-icon="icon-close s18"></md-icon>
+                                <md-tooltip md-direction="top">{{'generic.cancel' | translate}}</md-tooltip>
+                            </md-button>
+
+                            <md-button class="md-icon-button md-raised" aria-label="New Key" ng-click="variable.isHide = true;variable.select = false" ng-if="variable.select" ng-show="$first">
+                                <md-icon md-font-icon="icon-plus s18"></md-icon>
+                                <md-tooltip md-direction="top"> {{'campaign.newVariable' | translate}}</md-tooltip>
+                            </md-button>
+
+                        </div>
+                        <div flex="35">
+                            <md-input-container class="md-block" ng-if="!variable.isWavHide">
+                                <label for="" translate="{{'campaign.prompt' | translate}}"></label>
+                                <md-select name="wav" required="" ng-model="variable.wav" aria-label="variable">
+                                    <md-option ng-value="prompt" ng-repeat="prompt in vm.prompts">{{prompt}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <p ng-show="variable.isWavHide">{{variable.wav}}</p>
+                        </div>
+                        <div flex="15">
+                            <button ng-click="variable.isWavHide = false" ng-if="variable.isWavHide">
+                             <md-icon md-font-icon="icon-pencil s18"></md-icon>
+                           <md-tooltip md-direction="top"> {{'campaign.editPrompt' | translate}}</md-tooltip>
+                           </button>
+
+                            <md-button class="md-icon-button" ng-click="vm.removeVariables(variable.name)">
+                                <md-icon md-font-icon="icon-delete" ng-click=""></md-icon>
+                                <md-tooltip md-direction="top">{{'generic.delete'| translate}}</md-tooltip>
+                            </md-button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+
+
+
+    </md-content>
+
+
+</div>

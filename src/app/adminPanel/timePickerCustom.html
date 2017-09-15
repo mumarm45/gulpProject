@@ -1,0 +1,31 @@
+
+<div layout="row" class="date-row" layout-padding>
+  <div flex="50">
+    <md-input-container>
+      <label translate="easyAnnouncement.startTime"></label>
+      <input time-picker name="startTime" ng-change="vm.verifyDate(vm.selected.startTime,vm.selected.endTime)" time-format="H:i" class="time start" ng-model="vm.selected.startTime">
+      <div ng-messages="vm.createForm.startTime.$error" ng-show="vm.createForm.startTime.$touched" role="alert">
+        <div ng-message="required">
+          <span> <small translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.startTime' | translate}}'}"></small></span>
+        </div>
+        <div>
+          <span ng-show="vm.falseStartTime"> <small translate="campaign.startTimeLess"> </small></span>
+
+        </div>
+      </div>
+    </md-input-container>
+  </div>
+  <div flex="50">
+    <md-input-container>
+      <label translate="easyAnnouncement.endTime"></label>
+      <input time-picker name="endTime" ng-change="vm.verifyDate(vm.selected.startTime,vm.selected.endTime)" time-format="H:i" class="time end" ng-model="vm.selected.endTime">
+      <div ng-messages="vm.createForm.endTime.$error" ng-show="vm.createForm.endTime.$touched" role="alert">
+        <div ng-message="required">
+          <span> <small translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.endTime' | translate}}'}"></small></span>
+        </div>
+
+      </div>
+    </md-input-container>
+  </div>
+</div>
+

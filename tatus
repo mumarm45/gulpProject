@@ -1,0 +1,48 @@
+[1mdiff --git a/src/app/adminPanel/businessCalendar/dialog/event-form/businessCalendarWorking.js b/src/app/adminPanel/businessCalendar/dialog/event-form/businessCalendarWorking.js[m
+[1mindex c30f067..4c4dbda 100644[m
+[1m--- a/src/app/adminPanel/businessCalendar/dialog/event-form/businessCalendarWorking.js[m
+[1m+++ b/src/app/adminPanel/businessCalendar/dialog/event-form/businessCalendarWorking.js[m
+[36m@@ -57,8 +57,9 @@[m
+                     vm['shift' + workingEvent.shiftNumber] = workingEvent;[m
+                 })[m
+                 [m
+[31m-                vm.workingEvent.validTo   = moment(vm.workingEvent.validTo).toDate();[m
+[31m-                vm.workingEvent.validFrom = moment(vm.workingEvent.validFrom).toDate();[m
+[32m+[m[32m                //before this its shows one day before[m
+[32m+[m[32m                vm.workingEvent.validTo   = new Date(vm.workingEvent.validTo);[m
+[32m+[m[32m                vm.workingEvent.validFrom = new Date(vm.workingEvent.validFrom);[m
+ [m
+                 vm.basicInfoSaved = false;[m
+ [m
+[36m@@ -173,9 +174,6 @@[m
+                 vm.workingEvent['businessCalendarId'] = vm.businessCalendar.id;[m
+                 vm.workingEvent['eventNumber'] = vm.curWorkingEventNumber;[m
+ [m
+[31m-                console.log("From: " + vm.workingEvent.validFrom);[m
+[31m-                console.log("To: " + vm.workingEvent.validTo);[m
+[31m-[m
+                 //There is a bug in angular material design date picker, it returns one day before the selected date. Below are the[m
+                 //references. For now, I am just adding 1 day in it because it has already wasted my two hours :@[m
+                 //https://github.com/angular/material/issues/8936[m
+[36m@@ -185,7 +183,7 @@[m
+                 vm.workingEvent.validTo.setDate(vm.workingEvent.validTo.getDate() + 1);[m
+                 vm.workingEvent.validFrom.setDate(vm.workingEvent.validFrom.getDate() + 1);[m
+ [m
+[31m-                workingEventService.get_api.save(vm.workingEvent, [shift1, shift2], function(response) {                                [m
+[32m+[m[32m                workingEventService.get_api.save(vm.workingEvent, [shift1, shift2], function(response) {[m[41m                             [m
+ [m
+                     //Updating working event shift schedule[m
+                     if (!vm.workingEvent.id) {[m
+[36m@@ -201,7 +199,11 @@[m
+                     //$mdDialog.hide({ data: response, businessCalendarId: vm.businessCalendarId });[m
+                 }, function(error) {[m
+                     saveWorkingErrorMsg('create', error);[m
+[31m-                })              [m
+[32m+[m[32m                })[m[41m      [m
+[32m+[m[41m                [m
+[32m+[m[32m                //Subtracting one now after completeion of save/update operation to show date in its originl state to show on UI[m
+[32m+[m[32m                vm.workingEvent.validTo.setDate(vm.workingEvent.validTo.getDate() - 1);[m
+[32m+[m[32m                vm.workingEvent.validFrom.setDate(vm.workingEvent.validFrom.getDate() - 1);[m
+             }[m
+         }[m
+ [m

@@ -1,0 +1,130 @@
+<div layout="row" class="datepic">
+    <div flex="25">
+        <md-datepicker name="startDate" md-min-date="vm.minDate" required ng-change="vm.setEndDate()" ng-model="vm.easyAnnouncement.event.startDate" md-placeholder="{{'easyAnnouncement.startDate'|translate}}"></md-datepicker>
+        <div ng-messages="eventForm.start.$error" role="alert">
+            <div ng-message="required">
+                <span><small translate="data.cannot_null" translate-values="{name:'{{vm.translationData.startDate}}'}"></small></span>
+            </div>
+        </div>
+    </div>
+
+    <div flex="25">
+        <md-input-container>
+            <label translate="easyAnnouncement.startTime"></label>
+            <input time-picker name="startTime" class="time start" ng-model="vm.easyAnnouncement.event.startTime" ng-disabled="vm.easyAnnouncement.event.allDay">
+            <div ng-messages="eventForm.startTime.$error" ng-show="eventForm.startTime.$touched && !vm.easyAnnouncement.event.allDay" role="alert">
+                <div ng-message="required">
+                    <span> <small translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.startTime' | translate}}'}"></small></span>
+                </div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <div flex="25">
+        <md-datepicker name="endDate" md-min-date="vm.minEndDate" ng-model="vm.easyAnnouncement.event.endDate" md-placeholder="{{'easyAnnouncement.endDate'|translate}}"> </md-datepicker>
+    </div>
+
+    <div flex="25">
+        <md-input-container>
+            <label translate="easyAnnouncement.endTime"></label>
+
+            <input time-picker name="endTime" ng-model="vm.easyAnnouncement.event.endTime" class="time end" ng-disabled="vm.easyAnnouncement.event.allDay">
+            <div ng-messages="eventForm.endTime.$error" ng-show="eventForm.endTime.$touched && !vm.easyAnnouncement.event.allDay" role="alert">
+                <div ng-message="required">
+                    <span> <small translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.endTime' | translate}}'}"></small></span>
+                </div>
+            </div>
+        </md-input-container>
+    </div>
+</div>
+
+<div layout="row" class="date-row dayz" ng-if="vm.easyAnnouncement.event.isRepeat==1 && vm.easyAnnouncement.event.repeatType=='3' ">
+    <div flex="50">
+        <md-input-container class="">
+            <label translate="generic.enterMoreLabel" translate-values="{name:'{{'easyAnnouncement.days'|translate}}'}"></label>
+            <md-chips ng-model="vm.easyAnnouncement.event.monthlyDays" md-on-add="vm.checkEnterDaysInMonth()" placeholder="{{'generic.addLabelFor'|translate}}">
+
+                <input required name="monthlyDays" type="text" max="31" min="1" placeholder="{{'generic.addLabelForDay'|translate:{name:vm.translationData.day} }}">
+            </md-chips>
+            <div ng-messages="eventForm.monthly.$error" ng-show="eventForm.monthly.$touched" role="alert">{{vm.easyAnnouncement.event}}
+                <div ng-message="required">
+                    <span><small  translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.montly' | translate}}'}"></small></span>
+                </div>
+            </div>
+        </md-input-container>
+    </div>
+</div>
+
+<div layout="row" layout-padding>
+
+    <md-input-container flex="30" class="md-block">
+        <label translate="easyAnnouncement.orderNumber"></label>
+        <input type="number" name="orderNumber" min="1" max="20" ng-model="vm.easyAnnouncement.orderNumber" autocomplete="off" required>
+        <div ng-messages="eventForm.orderNumber.$error" ng-show="eventForm.orderNumber.$touched" role="alert">
+            <div ng-message="required">
+                <span translate="data.cannot_null" translate-values="{name:'{{'easyAnnouncement.orderNumber'|translate}}'}"></span>
+            </div>
+            <div ng-message="max">
+                <span translate="data.filedLarge" translate-values="{field:'{{'easyAnnouncement.orderNumber'|translate}}',number:20}"></span>
+            </div>
+            <div ng-message="min">
+                <span translate="data.filedShort" translate-values="{field:'{{'easyAnnouncement.orderNumber'|translate}}',number:1}"></span>
+            </div>
+        </div>
+    </md-input-container>
+
+    <div flex="50" class="play-stop">
+        <md-radio-group ng-required="vm.easyAnnouncement.playNext" name="playNext" flex ng-model="vm.easyAnnouncement.playNext">
+            <md-radio-button value="1"><span translate="easyAnnouncement.playNext"></span></md-radio-button>
+            <md-radio-button value="0"><span translate="easyAnnouncement.stop"></span></md-radio-button>
+            <div ng-messages="eventForm.playNext.$error" role="alert">
+                <div ng-message="required">
+                    <span translate="generic.selectOneLabel" translate-values="{name:'Value'}"></span>
+                </div>
+            </div>
+        </md-radio-group>
+    </div>
+
+    <div flex="10">
+        <md-list class="all-day enable">
+            <md-list-item>
+                <p translate="easyAnnouncement.repeat"></p>
+                <md-switch class="md-secondary" ng-model="vm.easyAnnouncement.event.isRepeat" ng-true-value="1" ng-false-value="0" aria-label="Repeat"></md-switch>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <div flex="10">
+        <md-list class="all-day enable">
+            <md-list-item>
+                <p translate="easyAnnouncement.allDay"></p>
+                <md-switch class="md-secondary" ng-model="vm.easyAnnouncement.event.allDay" aria-label="All Day"></md-switch>
+            </md-list-item>
+        </md-list>
+    </div>
+
+</div>
+
+<div layout="row" class="date-row" ng-if="vm.easyAnnouncement.event.isRepeat==1">
+    <div flex="50">
+        <input type="hidden" data-ng-model="vm.easyAnnouncement.event.repeatType" ng-value="vm.easyAnnouncement.event.isRepeat" />
+        <md-radio-group ng-required="vm.easyAnnouncement.event.repeatType" ng-change="vm.onTypeChange()" name="repeatType" flex ng-model="vm.easyAnnouncement.event.repeatType">
+            <md-radio-button flex="25" value="1"><span translate="easyAnnouncement.daily"></span></md-radio-button>
+            <md-radio-button flex="25" value="2"><span translate="easyAnnouncement.weekly"></span></md-radio-button>
+            <md-radio-button flex="25" value="3"> <span translate="easyAnnouncement.monthly"></span> </md-radio-button>
+            <div ng-messages="eventForm.repateType.$error" ng-show="vm.easyAnnouncement.event.isRepeat" role="alert">
+                <div ng-message="required">
+                    <span translate="generic.selectOneLabel" translate-values="{name:'Value'}"></span>
+                </div>
+            </div>
+        </md-radio-group>
+    </div>
+</div>
+
+<div layout="row" class="date-row" ng-if="vm.easyAnnouncement.event.isRepeat==1 && vm.easyAnnouncement.event.repeatType=='2' ">
+    <div ng-repeat="item in vm.weekly" class="standard" flex="20">
+        <md-checkbox ng-model="vm.easyAnnouncement.event.days[item.id]" ng-value="item.id">
+            {{ item.name }}
+        </md-checkbox>
+    </div>
+</div>

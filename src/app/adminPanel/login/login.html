@@ -1,0 +1,57 @@
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <div class="logo md-accent-bg">
+                <span>EF</span>
+            </div>
+
+            <div class="title" ><span translate="login.loginAccount"></span></div>
+            <span style="color:red" ng-show="vm.loginError && vm.loginError=='error'"><span translate="login.incorrect"></span></span>
+            <span style="color:red" ng-show="vm.loginError && vm.loginError=='isNotActive'" translate="login.blockedUser"></span>
+            <form name="loginForm" ng-submit="vm.signIn(vm.form)" novalidate>
+                <md-input-container class="md-block">
+                  <label translate="login.username"></label>
+                    <input type="text" name="username" ng-model="vm.form.username"
+
+                            required>
+                    <div ng-messages="loginForm.username.$error" ng-show="loginForm.username.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span translate="data.cannot_null" translate-values="{name:'{{'login.username'|translate}}'}"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                  <label translate="login.password"></label>
+                    <input type="password" name="password" ng-model="vm.form.password"
+
+                           required>
+                    <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched" role="alert">
+                        <div ng-message="required">
+                          <span translate="data.cannot_null" translate-values="{name:'{{'login.password'|translate}}'}"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <div class="remember-forgot-password" layout="row" layout-xs="column"
+                     layout-align="space-between center">
+                    <md-checkbox class="remember-me" ng-model="vm.form.remember_me" aria-label="Remember Me">
+                        <span translate="login.rememberMe"></span>
+                    </md-checkbox>
+
+                    <a ui-sref="app.pages_auth_forgot-password" class="forgot-password md-accent-color hidden"
+                       >Forgot Password?</a>
+                </div>
+
+                <md-button type="submit" class="md-raised md-accent" aria-label="LOG IN"
+                           ng-disabled="loginForm.$invalid || loginForm.$pristine"
+                           >
+                    <span translate="login.loggedIn"></span>
+                </md-button>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>

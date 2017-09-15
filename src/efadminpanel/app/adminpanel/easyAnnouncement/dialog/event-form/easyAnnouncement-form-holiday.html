@@ -1,0 +1,14 @@
+<div layout="row" class="datepic" date-pair>
+    <div flex="50">
+        <md-datepicker name="start" md-min-date="vm.minDate" required ng-change="vm.setEndDate()" ng-model="vm.easyAnnouncement.event.startDate" md-placeholder="{{'easyAnnouncement.startDate'|translate}}"></md-datepicker>
+        <div ng-messages="eventForm.start.$error" role="alert">
+            <div ng-message="required">
+                <span><small translate="data.cannot_null" translate-values="{name:'{{vm.translationData.startDate}}'}"></small></span>
+            </div>
+        </div>
+    </div>
+
+    <div flex="50">
+        <md-datepicker name="end" md-min-date="vm.minEndDate" ng-model="vm.easyAnnouncement.event.endDate" md-placeholder="{{'easyAnnouncement.endDate'|translate}}"></md-datepicker>
+    </div>
+</div>

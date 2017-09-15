@@ -1,0 +1,240 @@
+<div id="appSetting" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <div class="title"><span translate="login.applicationSetting"></span></div>
+
+            <form name="appSettingForm" ng-submit="vm.saveApplicationSetting(vm.form)">
+                <div>
+                    <h2 layout="row" translate="login.ciscoType"> </h2>
+                    <md-radio-group ng-disabled="vm.form.id" layout="row" ng-model="vm.form.ciscoType">
+
+                        <md-radio-button flex="50" value="0" class="md-primary" aria-label="UCCX"><span translate="login.UCCX"></span></md-radio-button>
+                        <md-radio-button flex="50" value="1" aria-label="UCCE"> <span translate="login.UCCE"></span> </md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div>
+                    <h2 layout="row" translate="login.appName"> </h2>
+                    <md-radio-group layout="row" ng-model="vm.form.applicationName">
+
+                        <md-radio-button flex="30" value="ecm" class="md-primary" aria-label="ECM"><span>ECM</span></md-radio-button>
+                        <md-radio-button flex="35" value="adminpanel" aria-label="adminpanel"> <span>AdminPanel</span> </md-radio-button>
+                        <md-radio-button flex="30" value="both" aria-label="bothapp"> <span translate="login.both"></span> </md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div>
+                    <h2 layout="row" translate="login.enableEasyAnnouncement"> </h2>
+                    <md-radio-group layout="row" ng-model="vm.form.enableEasyAnnouncement">
+                        <md-radio-button flex="30" value="0" aria-label="BC" class="md-primary"><span translate="login.businessCalendar"></span></md-radio-button>
+                        <md-radio-button flex="30" value="1" aria-label="easy"> <span translate="login.easyAnnouncement"></span> </md-radio-button>
+                        <md-radio-button flex="30" value="2" aria-label="bothEs"> <span translate="login.both"></span> </md-radio-button>
+                    </md-radio-group>
+
+                </div>
+                <div ng-if="vm.form.ciscoType==1">
+                    <h2 layout="row" translate="login.promptNetworkSetting"> </h2>
+                    <div layout="row">
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.domain"></label>
+                            <input type="text" name="domain" ng-model="vm.form.domain">
+                            <div ng-messages="appSettingForm.username.$error" ng-show="appSettingForm.domain.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.domain'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.machineIp"></label>
+                            <input type="text" name="machineIp" ng-pattern="/^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}$/" ng-model="vm.form.machineIp">
+                            <div ng-messages="appSettingForm.machineIp.$error" ng-show="appSettingForm.machineIp.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.machineIp'|translate}}'}"></span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span translate="login.ipPattern"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.sharedFolder"></label>
+                            <input type="text" name="sharedFolder" ng-model="vm.form.sharedFolder">
+                            <div ng-messages="appSettingForm.sharedFolder.$error" ng-show="appSettingForm.sharedFolder.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.sharedFolder'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.username"></label>
+                            <input type="text" name="username" ng-model="vm.form.username">
+                            <div ng-messages="appSettingForm.username.$error" ng-show="appSettingForm.username.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.username'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.password"></label>
+                            <input type="password" name="password" ng-model="vm.form.password">
+                            <div ng-messages="appSettingForm.password.$error" ng-show="appSettingForm.password.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.password'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-button flex="30" ng-click="vm.verifyTheNetworkSetting(vm.form)" class="save-button md-primary md-accent"><span translate="login.verify"></span></md-button>
+                    </div>
+
+                    <h2 layout="row" translate="login.ucceDatabaseSetting"> </h2>
+                    <div layout="row">
+                        <md-input-container flex="40" class="md-block">
+                            <label translate="login.databaseMachineIp"></label>
+                            <input type="text" name="databaseMachineIp" ng-pattern="/^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}$/" ng-model="vm.form.databaseMachineIp">
+                            <div ng-messages="appSettingForm.databaseMachineIp.$error" ng-show="appSettingForm.databaseMachineIp.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.databaseMachineIp'|translate}}'}"></span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span translate="login.ipPattern"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="60" class="md-block">
+
+                            <label translate="login.databaseName"></label>
+                            <input type="text" name="databaseName" ng-model="vm.form.databaseName">
+                            <div ng-messages="appSettingForm.databaseName.$error" ng-show="appSettingForm.databaseName.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.databaseName'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="40" class="md-block">
+                            <label translate="login.username"></label>
+                            <input type="text" name="databaseUsername" ng-model="vm.form.databaseUsername">
+                            <div ng-messages="appSettingForm.databaseUsername.$error" ng-show="appSettingForm.databaseUsername.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.username'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="60" class="md-block">
+                            <label translate="login.password"></label>
+                            <input type="password" name="databasePassword" ng-model="vm.form.databasePassword">
+                            <div ng-messages="appSettingForm.databasePassword.$error" ng-show="appSettingForm.databasePassword.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.password'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-button flex="30" ng-click="vm.verifyDatabaseSetting(vm.form)" class="save-button md-primary md-accent"><span translate="login.verify"></span></md-button>
+                    </div>
+                </div>
+                <div ng-if="vm.form.ciscoType==0">
+                    <div>
+                        <h2 layout="row" translate="login.ciscoType"> </h2>
+                        <md-radio-group layout="row" ng-model="vm.form.webRequest">
+
+                            <md-radio-button flex="50" value="http" class="md-primary" aria-label="HTTP"><span>HTTP</span></md-radio-button>
+                            <md-radio-button flex="50" value="https" aria-label="HTTPS"> <span>HTTPS</span> </md-radio-button>
+                        </md-radio-group>
+                    </div>
+
+                    <h2 layout="row" translate="login.primarySetting"> </h2>
+                    <div layout="row">
+
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.machineIp"></label>
+                            <input type="text" name="primaryIp" ng-pattern="/^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}$/" ng-model="vm.form.primaryIp">
+                            <div ng-messages="appSettingForm.primaryIp.$error" ng-show="appSettingForm.primaryIp.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.primaryIp'|translate}}'}"></span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span translate="login.ipPattern"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.username"></label>
+                            <input type="text" name="primaryUsername" ng-model="vm.form.primaryUsername">
+                            <div ng-messages="appSettingForm.primaryUsername.$error" ng-show="appSettingForm.primaryUsername.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.primaryUsername'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.password"></label>
+                            <input type="password" name="primaryPassword" ng-model="vm.form.primaryPassword">
+                            <div ng-messages="appSettingForm.primaryPassword.$error" ng-show="appSettingForm.primaryPassword.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.primaryPassword'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-button flex="30" ng-click="vm.verifyTheUCCXSetting(vm.form,'primary')" class="save-button md-primary md-accent"><span translate="login.verify"></span></md-button>
+                    </div>
+                    <h2 layout="row" translate="login.secondarySetting"> </h2>
+                    <div layout="row">
+
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.machineIp"></label>
+                            <input type="text" name="secondaryIp" ng-pattern="/^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}$/" ng-model="vm.form.secondaryIp">
+                            <div ng-messages="appSettingForm.secondaryIp.$error" ng-show="appSettingForm.secondaryIp.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.secondaryIp'|translate}}'}"></span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span translate="login.ipPattern"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.username"></label>
+                            <input type="text" name="secondaryUsername" ng-model="vm.form.secondaryUsername">
+                            <div ng-messages="appSettingForm.secondaryUsername.$error" ng-show="appSettingForm.secondaryUsername.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.secondaryUsername'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="50" class="md-block">
+                            <label translate="login.password"></label>
+                            <input type="password" name="secondaryPassword" ng-model="vm.form.secondaryPassword">
+                            <div ng-messages="appSettingForm.secondaryPassword.$error" ng-show="appSettingForm.secondaryPassword.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span translate="data.cannot_null" translate-values="{name:'{{'login.secondaryPassword'|translate}}'}"></span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-button flex="30" ng-click="vm.verifyTheUCCXSetting(vm.form,'secondary')" class="save-button md-primary md-accent"><span translate="login.verify"></span></md-button>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <md-button type="submit" class="md-raised md-accent" aria-label="SAVE" ng-disabled="appSettingForm.$invalid || appSettingForm.$pristine">
+                    <span translate="generic.save"></span>
+                </md-button>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>

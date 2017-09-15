@@ -1,0 +1,103 @@
+<!--<md-widget-engine configuration='vm.data' callback="vm.callback" ms-scroll class="scrollable"></md-widget-engine>-->
+
+
+
+
+<div id="dashboard-project" class="page-layout simple right-sidenav" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" flex ms-scroll>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+
+            <!-- WIDGET GROUP -->
+            <div class="widget-group" layout="row" flex="100" layout-wrap data-ng-repeat="row in vm.board.rows">
+
+                <!-- WIDGET 1 -->
+                <ms-widget flippable="true" layout="column" flex="100" data-ng-repeat="widget in  row.widgets" flex-gt-xs="50" flex-gt-md="{{row.width}}" draggable="true" dropzone="true">
+
+                    <!-- Front -->
+                    <ms-widget-front class="white-bg">
+                        <div class="ph-8 pv-16 h-55" layout="row" layout-align="space-between center">
+                            {{widget.title}}
+                            <!--<md-select class="simplified font-size-16" ng-model="vm.widget1.currentRange" aria-label="Change range">
+                                <md-option ng-repeat="(key, range) in vm.widget1.ranges" value="{{key}}">
+                                    {{range}}
+                                </md-option>
+                            </md-select>
+
+                            <md-menu>
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+                                    <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                                </md-button>
+
+                                <md-menu-content width="3">
+                                    <md-menu-item>
+                                        <md-button ng-click="flipWidget()" aria-label="Flip widget">
+                                            Details
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="refreshWidget()" aria-label="Refresh widget">
+                                            Refresh
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>-->
+                        </div>
+
+                        <div class="pt-8 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{vm.widget1.data.count[vm.widget1.currentRange]}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">{{vm.widget1.data.label}}</div>
+                        </div>
+
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">{{vm.widget1.data.extra.label}}:</span>
+                            <span class="h4 ml-8">{{vm.widget1.data.extra.count[vm.widget1.currentRange]}}</span>
+
+                            <ng-include src="widget.content"></ng-include>
+                        </div>
+                    </ms-widget-front>
+                    <!-- / Front -->
+
+                    <!-- Back -->
+                    <ms-widget-back class="p-16 white-bg">
+                        <div class="flip-to-front">
+                            <md-button class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget">
+                                <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                            </md-button>
+                        </div>
+
+                        <div>
+                            {{vm.widget1.detail}}
+                        </div>
+                    </ms-widget-back>
+                    <!-- / Back -->
+
+                </ms-widget>
+                <!-- / WIDGET 1 -->
+
+
+
+            </div>
+            <!-- / WIDGET GROUP -->
+
+
+
+
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+
+
+</div>
+<!-- WIDGET GROUP -->
+
+<!-- / WIDGET GROUP -->

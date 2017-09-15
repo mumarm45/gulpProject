@@ -1,0 +1,67 @@
+<!-- CARD -->
+<md-list class="todo-item md-grey-A100-bg swipe BClist" md-ink-ripple layout="row" layout-align="start center" ng-repeat="campaign in vm.campaigns | filter:global.search">
+
+
+    <md-list-item flex="90" ng-click="vm.selectCampaign(campaign)" class="contact-item" ng-class="{'bcSelected' : vm.selectedName == campaign.name}">
+        <div class="md-list-item-text compact">
+            <h3>
+                <span class="text-boxed m-0 green-bg white-fg">
+								 <md-tooltip md-direction="top"><span translate="Campaign ID"></span></md-tooltip>
+                {{campaign.id}}
+                </span>
+                <span>
+								{{campaign.name}}
+								<md-tooltip md-direction="top"><span translate="Campaign Name"></span></md-tooltip>
+
+                </span>
+            </h3>
+            <md-switch ng-model="campaign.enabled" class="switch" ng-change="vm.campaignUpdateStatus(campaign.id,campaign.enabled)" aria-label="status"></md-switch>
+        </div>
+    </md-list-item>
+    <md-list-item flex="10" class="contact-item contactItemMenu">
+        <span>
+           <md-menu md-offset="0 48px" class="options list-header-option-button">
+
+             <md-button class="md-icon-button" ng-click="$mdOpenMenu($event,vm.queueList)" aria-label="Options"
+                        translate translate-attr-aria-label="SB.OPTIONS">
+               <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
+             </md-button>
+
+             <md-menu-content class="options-menu-content" width="4">
+
+
+
+        <md-menu-item>
+
+            <md-button ng-click="vm.deleteCampaign(campaign.id)"  aria-label="list">
+                <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
+                <span translate="generic.delete"></span>
+        </md-button>
+        </md-menu-item>
+        <md-menu-item>
+
+            <md-button ng-click="vm.toggleSideNav('left',campaign.id, campaign.name)" aria-label="list">
+                <md-icon md-font-icon="icon-view-list" md-menu-align-target></md-icon>
+                <span translate="campaign.listofContacts"></span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button ng-click="vm.uploadCampaign(event,campaign.id)" aria-label="Upload">
+                <md-icon md-font-icon="icon-upload" md-menu-align-target></md-icon>
+                <span translate="generic.upload"></span>
+            </md-button>
+        </md-menu-item>
+
+        </md-menu-content>
+
+        </md-menu>
+
+        </span>
+    </md-list-item>
+
+
+
+</md-list>
+
+
+<!-- / CARD -->

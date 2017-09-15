@@ -1,0 +1,101 @@
+.campaign {
+    .filterSearch {
+        padding: 25px 15px 0px 25px;
+        .inputSearch {
+            padding-top: 6px
+        }
+    }
+    .table-tilte1 {
+        padding: 7px 0 0px 17px;
+        font-size: 16px;
+    }
+    .sidebar1 {
+        width: 100%;
+    }
+    md-icon {
+        color: #000;
+    }
+    .switch {
+        margin: 0 0 0 0;
+        height: 20px;
+        line-height: 20px;
+    }
+}
+
+#camapign .sidenav1 .header {
+    background-color: #fff;
+}
+
+#camapign .sidenav1 .content .file-details .preview {
+    height: auto !important;
+    max-height: 150px;
+    margin-bottom: 20px;
+}
+
+#camapign {
+    md-toolbar.md-default-theme.md-hue-2.md-accent:not(.md-menu-toolbar),
+    md-toolbar.md-hue-2.md-accent:not(.md-menu-toolbar) {
+        background-color: #fff;
+        color: #000;
+    }
+    md-toolbar {
+        min-height: 110px;
+        md-icon {
+            color: #000;
+        }
+    }
+    md-content {
+        margin-top: 59px;
+    }
+}
+
+div#campaign {
+    width: 100%;
+}
+
+#camapign {
+    width: 100%;
+}
+
+#camapign .side-nav {
+    box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);
+    overflow: auto;
+    position: relative;
+    z-index: 3;
+    background-color: #fff;
+    color: #000;
+    .top-bg {
+        background-image: none;
+        background-color: #fff;
+        color: #000;
+        height: 100px;
+    }
+    .header {
+        padding: 0 0px 0px;
+        height: 64px;
+        position: relative;
+        z-index: 1;
+        color: #000;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+        .fabIcon {
+            position: absolute;
+            top: 3px;
+        }
+    }
+    .content {
+        margin-top: 80px
+    }
+
+}
+.chkBoxPad{
+  padding-left: 5%;
+}
+.font-small{
+  font-size: 16px !important;
+}
+.topp-padd{
+  padding-top: 0% !important;
+}
+.adjusttt-top{
+  margin-top: 1% !important;
+}

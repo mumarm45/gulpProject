@@ -1,0 +1,59 @@
+<div id="board-calendar" class="page-layout simple right-sidenav campaign" flex layout="row">
+
+
+    <md-sidenav class="side-nav sidenav scheduled-tasks-sidenav  md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')" md-component-id="scheduled-tasks-sidenav" ms-sidenav-helper>
+        <div class="top-bg md-accent-bg"></div>
+        <div class="header" layout="column" layout-align="space-between">
+
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-text" translate="campaign.campaigns"></span>
+            </div>
+
+            <md-fab-trigger class="fabIcon">
+                <md-button aria-label="menu" class="md-fab md-warn md-mini" ng-click="vm.create()">
+                    <md-tooltip><span translate="generic.createLabel" translate-values="{name:'{{'campaign.campaign'|translate}}'}"></span></md-tooltip>
+                    <md-icon md-font-icon="icon-plus"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+
+        </div>
+        <div ng-include="'app/ecm/campaign/sidenavs/sideNavbareEvents.html'" class="scrollable" ms-scroll></div>
+
+    </md-sidenav>
+    <!--<div class="side-nav" layout="column" flex="25">
+        <div class="top-bg md-accent-bg"></div>
+        <div class="header" layout="column" layout-align="space-between">
+
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-text" translate="campaign.campaigns"></span>
+            </div>
+
+            <md-fab-trigger class="fabIcon">
+                <md-button aria-label="menu" class="md-fab md-warn" ng-click="vm.create()">
+                    <md-tooltip><span translate="generic.createLabel" translate-values="{name:'{{'campaign.campaign'|translate}}'}"></span></md-tooltip>
+                    <md-icon md-font-icon="icon-plus"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+
+        </div>
+        
+    </div>-->
+
+
+    <md-sidenav ng-show="vm.selected" class=" sidebar scrollable" layout="row" flex="100" md-is-locked-open="$mdMedia('gt-xs')" md-component-id="details-sidenav" ng-include="'app/ecm/campaign/sidenavs/sidenav0.html'" ms-scroll>
+    </md-sidenav>
+
+    <md-sidenav class="md-sidenav-left sidebar1 sidebarnav1" layout="row" flex="100" md-component-id="left" ng-include="'app/ecm/campaign/sidenavs/sidenav1.html'" md-whiteframe="10"></md-sidenav>
+
+</div>
+
+<div id="admin-access" ng-show="vm.authorizationRequires">
+    <div layout="column" ui-view="main" class="animate-slide-up ng-scope" id="main" ng-show="vm.authorizationRequires">
+        <div flex="" layout="column" class="template-layout ng-scope" id="layout-content-only">
+            <md-content flex="" ui-view="content" class="animate-slide-up md-background md-hue-1 ng-scope md-default-theme" id="content">
+                <ng-include src="'app/adminPanel/custome/accessDenied.html'" />
+            </md-content>
+        </div>
+
+    </div>
+</div>

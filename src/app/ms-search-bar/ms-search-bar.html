@@ -1,0 +1,7 @@
+<div flex layout="row" layout-align="start center">
+    <label for="ms-search-bar-input">
+        <md-icon id="ms-search-bar-expander" md-font-icon="icon-magnify"  class="icon s24"></md-icon>
+        <md-icon id="ms-search-bar-collapser" md-font-icon="icon-close" ng-click="vm.search=''" class="icon s24"></md-icon>
+    </label>
+    <input id="ms-search-bar-input" type="text" ng-model-options=" { debounce: 1000 } " ng-create="vm.filterData()" ng-model="vm.search" placeholder="Search" md-autofocus translate translate-attr-placeholder="generic.search" flex>
+</div>
